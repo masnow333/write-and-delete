@@ -1,0 +1,33 @@
+* {
+	margin: 0;
+}
+
+body {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+h2 {
+	margin-bottom: 10%;
+	position: relative;
+	height: 2rem;
+}
+
+h2::after {
+	content: "";
+	position: absolute;
+	width: 0.5rem;
+	height: 2rem;
+	background-color: #000;
+	right: -8px;
+	bottom: 0;
+	display: inline-block;
+	animation: transitionTransparent 1s infinite linear;
+}
+
+.twinkle::after {
+	background-color: transparent;
+}
