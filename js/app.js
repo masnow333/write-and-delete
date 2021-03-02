@@ -11,10 +11,10 @@ let interval = setInterval(() => {
 }, 800);
 
 const listOfValues = [
-	"Lorem ipsum dolor sit amet",
-	"consectetur, adipisicing elit.",
-	"Omnis quae ducimus nulla molestiae harum aspernatur",
-	"natus deserunt sapiente illum porro.",
+	"Lorem ipsum dolor",
+	"consectetur, adip",
+	"Omnis quae ducimus",
+	"natus deserunt",
 ];
 
 const endDelete = () => {
