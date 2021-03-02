@@ -10,36 +10,47 @@ let interval = setInterval(() => {
 	whait();
 }, 800);
 
-const endDelete = new Promise((resolve) => {
-	setTimeout(() => {
-		if (twinkle.classList.contains("twinkle")) {
-			twinkle.classList.remove("twinkle");
-		}
-		clearInterval(interval);
-		let text = h2.innerText;
-		let counters = [0, text.length];
+const listOfValues = [
+	"Lorem ipsum dolor sit amet",
+	"consectetur, adipisicing elit.",
+	"Omnis quae ducimus nulla molestiae harum aspernatur",
+	"natus deserunt sapiente illum porro.",
+];
 
-		const timer = setInterval(() => {
-			counters[0]++;
-			text = text.slice(0, -1);
-			h2.innerText = text;
-			if (counters[0] === counters[1]) {
-				clearInterval(timer);
-				interval = setInterval(() => whait(), 800);
-				resolve(true);
+const endDelete = () => {
+	return new Promise((resolve) => {
+		setTimeout(() => {
+			if (twinkle.classList.contains("twinkle")) {
+				twinkle.classList.remove("twinkle");
 			}
-		}, 200);
-	}, 5000);
-});
+			clearInterval(interval);
+			let text = h2.innerText;
+			let counters = [0, text.length];
+
+			const timer = setInterval(() => {
+				counters[0]++;
+				text = text.slice(0, -1);
+				h2.innerText = text;
+				if (counters[0] === counters[1]) {
+					clearInterval(timer);
+					interval = setInterval(() => whait(), 800);
+					resolve();
+				}
+			}, 200);
+		}, 5000);
+	});
+};
+
+let i = 0;
 
 const writeWord = async () => {
-	const del = await endDelete;
+	const del = await endDelete();
 	setTimeout(() => {
 		if (twinkle.classList.contains("twinkle")) {
 			twinkle.classList.remove("twinkle");
 		}
 		clearInterval(interval);
-		let newText = "Care pan";
+		let newText = listOfValues[i];
 		let text = "";
 		let counters = [0, newText.length];
 
@@ -50,7 +61,8 @@ const writeWord = async () => {
 			if (counters[0] === counters[1]) {
 				clearInterval(timer);
 				interval = setInterval(() => whait(), 800);
-				writeWord();
+				i === listOfValues.length - 1 ? (i = 0) : i++;
+				writeWord(i);
 			}
 		}, 300);
 	}, 2000);
